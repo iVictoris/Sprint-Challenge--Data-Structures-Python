@@ -64,6 +64,7 @@ class LinkedList:
         self.add_to_queue(node.get_value())
         self.reverse_list(node.get_next())
 
+# finish sprint 5p EST 7/16/2020
 
 
 
