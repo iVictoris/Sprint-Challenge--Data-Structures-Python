@@ -1,12 +1,20 @@
 class RingBuffer:
     def __init__(self, capacity):
-        pass
+        self.capacity = capacity
+        self.storage = []
+        self.oldest = 0
 
     def append(self, item):
-        pass
+        if self.capacity == len(self.storage):
+            # replace the head or the oldest
+            self.storage[self.oldest] = item
+            self.oldest += 1 # increments oldest starting at 1
+            self.oldest %= self.capacity # when oldest hits 3 it will revert to 0
+        else:
+            self.storage.append(item)
 
     def get(self):
-        pass
+        return self.storage
 
 # start sprint at 3pm EST 7/16/2020
 """
