@@ -15,6 +15,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.queue = []
 
     def add_to_head(self, value):
         node = Node(value)
@@ -38,5 +39,33 @@ class LinkedList:
 
         return False
 
-    def reverse_list(self, node, prev):
-        pass
+    def add_to_queue(self, value):
+        # adds to front of queue list
+        self.queue = [value] + self.queue
+
+    def remove_from_queue(self):
+        # removes from front of queue
+        poppped = self.queue[len(self.queue)-1]
+        self.queue = self.queue[:len(self.queue)-1]
+        return poppped
+
+    def create_reverse_list(self):
+        if len(self.queue) == 0:
+            return
+        value = self.remove_from_queue()
+        self.add_to_head(value)
+        self.create_reverse_list()
+
+    def reverse_list(self, node):
+        if node is None:
+            self.head = None
+            self.create_reverse_list()
+            return
+        self.add_to_queue(node.get_value())
+        self.reverse_list(node.get_next())
+
+# finish sprint 5p EST 7/16/2020
+
+
+
+        
